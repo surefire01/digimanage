@@ -25,7 +25,11 @@ class MyApp extends StatelessWidget {
       initialData: null,
       child: MaterialApp(
         routes: {
-          "create" : (context) => NewMeeting(),
+          "0" : (context) => NewMeeting(),
+          "1" : (context) => NewMeeting(),
+          "2" : (context) => NewMeeting(),
+          "3" : (context) => NewMeeting(),
+
         },
         theme: primaryTheme,
         home:Wrapper(),

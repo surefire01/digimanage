@@ -26,8 +26,8 @@ class _NewMeetingState extends State<NewMeeting> {
     DateTime? newdateTime = await showDatePicker(
         context: context,
         initialDate: DateTime.now(),
-        firstDate: DateTime(2001),
-        lastDate: DateTime(2024));
+        firstDate: DateTime.now(),
+        lastDate: DateTime.now().add(Duration(days: 365)));
     if (newdateTime == null) return;
     setState(() {
       newMeeting.date =  DateFormat.yMMMd().format(newdateTime);

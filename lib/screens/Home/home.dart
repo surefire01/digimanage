@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 
 import '../base_screens/events.dart';
+import 'create_menu.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -24,30 +25,6 @@ class _HomeState extends State<Home> {
   final baseScreens = <BaseScreen>[baseHome,tasks,baseHome,events,profile];
 
   //String details = "";
-  void showCreateMenu(BuildContext context){
-    showModalBottomSheet(context: context, builder: (context){
-      return Container(
-        padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-        child: Column(
-          children: [
-            Text("Select"),
-            SizedBox(height: 20,),
-            TextButton.icon(
-              icon: Icon(Icons.people_outlined),
-              label: Text("Meeting"),
-              onPressed: ()async{
-                await Navigator.pushNamed(context, "create ");
-                Navigator.pop(context);
-                },
-
-            )
-          ],
-        ),
-      );
-
-    });
-  }
-
 
 
   void Create (val, BuildContext context){

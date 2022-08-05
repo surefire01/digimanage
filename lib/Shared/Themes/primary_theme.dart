@@ -13,6 +13,7 @@ ThemeData primaryTheme = ThemeData(
     ),
     textTheme: const TextTheme(),
     iconTheme: const IconThemeData(color: Colors.blue),
+
     appBarTheme: const AppBarTheme(
       elevation: 0,
       centerTitle: true,
@@ -33,7 +34,13 @@ ThemeData primaryTheme = ThemeData(
     backgroundColor: Colors.white,
     unselectedItemColor: Colors.blue,
     selectedItemColor: Colors.pink,
-  )
+  ),
+  bottomSheetTheme: BottomSheetThemeData(
+    backgroundColor: Colors.white,
+    elevation: 0.0,
+
+  ),
+
 );
 
 
