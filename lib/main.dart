@@ -1,4 +1,4 @@
-import 'package:digimanage/Shared/Themes/primary_theme.dart';
+import 'package:digimanage/utils/Themes/primary_theme.dart';
 import 'package:digimanage/models/user.dart';
 import 'package:digimanage/screens/CreatingMeeting/new_meeting.dart';
 import 'package:digimanage/screens/Home/home.dart';

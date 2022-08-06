@@ -1,9 +1,7 @@
-import 'package:digimanage/trying_out _different_things/loading.dart';
+
 import 'package:digimanage/services/authentication.dart';
+import 'package:digimanage/utils/utils.dart';
 import 'package:flutter/material.dart';
-
-import '../../Shared/Themes/primary_theme.dart';
-
 
 
 class SignIn extends StatefulWidget {
@@ -27,16 +25,18 @@ class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
 
   // to sign up
-  Future<void> signIn() async{
+  Future<void> signIn(BuildContext context) async{
     if(_formKey.currentState!.validate()) {
       setState(() => loading=true);
       dynamic result = await _auth.signInWithEmailAndPassword(email, password);
-      if(result==null){
+      if(result!="login successful"){
+        showSnackBar(result.toString(), context);
         setState(() {
-          error= "please supply valid email";
           loading =false;
         }
         );
+      }else{
+        showSnackBar(result.toString(), context);
       }
     }
 
@@ -46,16 +46,18 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    return loading? Loading():Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: Container(
             padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 20),
             child: Form(
               key: _formKey,
               child: Column(
+                //crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Login"),
-                  const SizedBox(height: 20,),
+                  Text("Digimanage", style: Theme.of(context).textTheme.headlineMedium,),
+                  const SizedBox(height: 30,),
                   TextFormField(
                     decoration: InputDecoration(hintText: "Email Id"),
                     validator: (val) => val!.isEmpty? "Enter an email" : null,
@@ -69,17 +71,25 @@ class _SignInState extends State<SignIn> {
                     onChanged: (val){ setState(() => password=val); },
                   ),
                   const SizedBox(height: 20,),
-                  ElevatedButton(
-                    onPressed: signIn,
-                    child: const Text("Sign In"),
+                  Container(
+                    width: double.infinity,
+                    //height: 40,
+                    child: ElevatedButton(
+                      onPressed: () {signIn(context);},
+                      child: Container(child : loading == true ? Container(height: 20,width: 20,child: CircularProgressIndicator(strokeWidth: 2,)) : Text("Login In")),
+                    ),
                   ),
-                  SizedBox(height: 20,),
-                  Text("Don't have an account?"),
-                  GestureDetector(
-                    child: Text("Sign up",style: TextStyle(color: Colors.blue),),
-                    onTap: (){widget.toggleView();},
+                  const SizedBox(height: 20,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Don't have an account?  "),
+                      GestureDetector(
+                        child: Text("Sign up",style: TextStyle(color: Colors.blue),),
+                        onTap: (){widget.toggleView();},
+                      ),
+                    ],
                   ),
-
                 ],
               ),
             )

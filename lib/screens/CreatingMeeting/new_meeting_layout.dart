@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:digimanage/general_components.dart';
 
 class NewMeetingLayout extends StatefulWidget {
   NewMeetingLayout({required this.title,required this.dateAndPlace,required this.details, required this.doneFunction }) {}

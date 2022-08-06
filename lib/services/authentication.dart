@@ -1,3 +1,6 @@
+
+import 'dart:math';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:digimanage/models/user.dart';
 import 'package:digimanage/services/database.dart';
@@ -21,13 +24,16 @@ class AuthService{
   Future signInWithEmailAndPassword(String email, String password) async{
     try{
       UserCredential result = await _auth.signInWithEmailAndPassword(email: email, password: password);
-      return _userUIDfromUser(result.user);
+      return "login successful";
 
-    }catch(e){
-      print(e.toString());
-      return null;
+    }on FirebaseAuthException catch (e){
+      return e.code;
     }
-  }
+    catch(e){
+      print(e.toString());
+      return e.toString();
+    }
+  } // return string to show the error or success
 
   // register with email and password
   Future registerWithEmailAndPassword(String email, String password) async{
@@ -36,11 +42,15 @@ class AuthService{
 
       //create a new document for the user using uid
 
-      return _userUIDfromUser(result.user);
+      return "account created successfully";
 
-    }catch(e){
+    } on FirebaseAuthException catch (e){
+      return e.code;
+    }
+
+    catch(e){
       print(e.toString());
-      return null;
+      return e.toString();
     }
   }
 

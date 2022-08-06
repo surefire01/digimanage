@@ -1,6 +1,6 @@
-import 'package:digimanage/Shared/Themes/appbar_theme.dart';
-import 'package:digimanage/Shared/Themes/bottom_navigaitionbar_theme.dart';
-import 'package:digimanage/Shared/Themes/button_themes.dart';
+import 'package:digimanage/utils/Themes/appbar_theme.dart';
+import 'package:digimanage/utils//Themes/bottom_navigaitionbar_theme.dart';
+import 'package:digimanage/utils//Themes/button_themes.dart';
 import 'input_decoration_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +20,7 @@ ThemeData primaryTheme = ThemeData(
     backgroundColor: Colors.white,
     elevatedButtonTheme: elevatedButtonThemeData,
     inputDecorationTheme: forSignIn,
-    bottomNavigationBarTheme: bottomNavigationBarThemeData
+    bottomNavigationBarTheme: bottomNavigationBarThemeData,
+    //snackBarTheme:
 );
 
