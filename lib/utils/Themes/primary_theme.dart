@@ -9,8 +9,8 @@ import 'input_decoration_theme.dart';
 ThemeData primaryTheme = ThemeData(
     cardTheme: CardTheme(elevation: 0, margin: EdgeInsets.all(0)),
     listTileTheme: ListTileThemeData(
-      shape:
-          OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.none)),
+        iconColor: Colors.blue,
+      shape: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.none)),
     ),
     textTheme: const TextTheme(),
     iconTheme: const IconThemeData(color: Colors.blue),
@@ -21,6 +21,11 @@ ThemeData primaryTheme = ThemeData(
     elevatedButtonTheme: elevatedButtonThemeData,
     inputDecorationTheme: forSignIn,
     bottomNavigationBarTheme: bottomNavigationBarThemeData,
+    bottomSheetTheme: BottomSheetThemeData(
+        elevation: 0,
+        backgroundColor: Colors.white,
+
+    )
     //snackBarTheme:
 );
 

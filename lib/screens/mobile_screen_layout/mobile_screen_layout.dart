@@ -1,80 +1,67 @@
-import 'package:digimanage/models/base_screen.dart';
-import 'package:digimanage/screens/base_screens/home.dart';
-import 'package:digimanage/screens/base_screens/profile.dart';
-import 'package:digimanage/screens/base_screens/tasks.dart';
+
+import 'package:digimanage/screens/mobile_screen_layout/utils.dart';
 import 'package:flutter/material.dart';
+import '../create_menue/create_menue.dart';
 
 
-import '../base_screens/events.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class MobileScreenLayout extends StatefulWidget {
+  const MobileScreenLayout({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<MobileScreenLayout> createState() => _MobileScreenLayoutState();
 }
 
-class _HomeState extends State<Home> {
+class _MobileScreenLayoutState extends State<MobileScreenLayout> {
 
-  int currentPage =0;
+  int _page =0;
+  late PageController pageController;
 
-  BaseScreen currentScreen = baseHome;
+  @override
+  void initState(){
+    super.initState();
+    pageController = PageController();
+  }
 
+  @override
+  void dispose(){
+    super.dispose();
+    pageController.dispose();
+  }
 
-  final baseScreens = <BaseScreen>[baseHome,tasks,baseHome,events,profile];
+  void navigationTapped(int page,BuildContext context ){
 
-  //String details = "";
-  void showCreateMenu(BuildContext context){
-    showModalBottomSheet(context: context, builder: (context){
-      return Container(
-        padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-        child: Column(
-          children: [
-            Text("Select"),
-            SizedBox(height: 20,),
-            TextButton.icon(
-              icon: Icon(Icons.people_outlined),
-              label: Text("Meeting"),
-              onPressed: ()async{
-                await Navigator.pushNamed(context, "create ");
-                Navigator.pop(context);
-                },
+    if(page == 2) {
+      showCreateMenu(context);
+      return;
+    }
+    pageController.jumpToPage(page);
+  }
 
-            )
-          ],
-        ),
-      );
-
+  void onPageChanged(int page){
+    setState((){
+      if(page == 2) return;
+      _page = page;
     });
   }
 
 
-
-  void Create (val, BuildContext context){
-    if(val == 2){
-      setState(() => currentPage = val);
-      showCreateMenu(context);
-      setState(() => currentPage = 0);
-    }
-    else{
-      setState((){
-        currentPage = val;
-        currentScreen = baseScreens[currentPage];
-      });
-    }
-
-  }
-
   @override
   Widget build(BuildContext context) {
 
+
+
     return Scaffold(
-      appBar: currentScreen.appBar,
-      body: currentScreen.body,
+      body: PageView(
+        children: bottomNavigationBarItems,
+        controller: pageController,
+        onPageChanged:onPageChanged,
+        physics: NeverScrollableScrollPhysics(),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        currentIndex: currentPage,
-        onTap: (val){ Create(val, context); },
+        currentIndex: _page,
+        onTap: (page) {navigationTapped(page,context);},
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "home",),
           BottomNavigationBarItem(

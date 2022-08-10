@@ -1,7 +1,6 @@
 import 'package:digimanage/utils/Themes/primary_theme.dart';
 import 'package:digimanage/models/user.dart';
 import 'package:digimanage/screens/CreatingMeeting/new_meeting.dart';
-import 'package:digimanage/screens/Home/home.dart';
 import 'package:digimanage/screens/Wrapper/wrapper.dart';
 import 'package:digimanage/services/authentication.dart';
 import 'package:flutter/material.dart';

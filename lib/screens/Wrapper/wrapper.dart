@@ -1,6 +1,6 @@
 
 import 'package:digimanage/models/user.dart';
-import 'package:digimanage/screens/Home/home.dart';
+import 'package:digimanage/screens/mobile_screen_layout/mobile_screen_layout.dart';
 import 'package:digimanage/screens/authenticate/authenticate.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +20,7 @@ import 'package:provider/provider.dart';
 //   Widget build(BuildContext context) {
 //     final user = Provider.of<UserUid?>(context);
 //     print(user?.uid);
-//     return user == null ? Authenticate() : Home();
+//     return user == null ? Authenticate() : mobile_screen_layout();
 //
 //   }
 // }
@@ -32,7 +32,7 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = Provider.of<UserUid?>(context);
     //print(user?.uid);
-    return user == null ? Authenticate() : Home();
+    return user == null ? Authenticate() : MobileScreenLayout();
 
   }
 }
