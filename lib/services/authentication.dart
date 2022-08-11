@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:digimanage/models/user.dart';
-import 'package:digimanage/services/database.dart';
+import 'package:digimanage/services/database_notification_service.dart';
 
 
 

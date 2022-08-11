@@ -1,8 +1,10 @@
 import 'package:digimanage/models/home_screen_notifications/meeting.dart';
+import 'package:digimanage/screens/CreatingMeeting/utils.dart';
 import 'package:digimanage/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:digimanage/services/database.dart';
+import 'package:digimanage/services/database_notification_service.dart';
+
 
 const colorIcons = Colors.blue;
 
@@ -14,55 +16,6 @@ class NewMeeting extends StatefulWidget {
 }
 
 class _NewMeetingState extends State<NewMeeting> {
-  final _formKey = GlobalKey<FormState>();
-
-  DatabaseService toUpdateMeet = DatabaseService();
-  Meeting newMeeting = Meeting();
-
-  DateTime? _dateTime;
-  TimeOfDay time = const TimeOfDay(hour: 12, minute: 00);
-
-  // to get date form the date picker
-  Future getDate() async{
-    DateTime? newdateTime = await showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(2001),
-        lastDate: DateTime(2024));
-    if (newdateTime == null) return;
-    setState(() {
-      newMeeting.date =  DateFormat.yMMMd().format(newdateTime);
-    });
-  }
-
-  // to get time from the time picker
-  Future getTime() async{
-    TimeOfDay? newTime = await showTimePicker(
-        context: context, initialTime: time);
-    setState(() {
-      newMeeting.time = newTime!.format(context).toString();
-    });
-  }
-
-
-  void updateMeet (){
-
-    // for now use snack bar to show msg if Date or time is not selected
-    if(newMeeting.date.isEmpty){
-      showSnackBar("please select a date", context);
-      return;
-    }
-    if(newMeeting.time.isEmpty){
-      showSnackBar("please select the time", context);
-      return;
-    }
-
-    if(_formKey.currentState!.validate()) {
-      toUpdateMeet.updateMeeting(newMeeting);
-      Navigator.pop(context);
-
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,12 +23,12 @@ class _NewMeetingState extends State<NewMeeting> {
         appBar: AppBar(
           title: const Text("New Meeting", style: TextStyle(color: Colors.black),),
           leading: IconButton(onPressed: (){ Navigator.pop(context);},icon: Icon(Icons.arrow_back,),),
-          actions: [IconButton(onPressed: () {updateMeet();}, icon:Icon(Icons.done,))],
+          actions: [IconButton(onPressed: () {updateMeet(context);}, icon:Icon(Icons.done,))],
         ),
         body: Padding(
           padding: const EdgeInsets.all(20),
           child: Form(
-            key: _formKey,
+            key: formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -102,7 +55,7 @@ class _NewMeetingState extends State<NewMeeting> {
                 SizedBox(
                   width: 200,
                   child: TextFormField(
-                    decoration: InputDecoration (hintText: "Type title her",filled: false),
+                    decoration: InputDecoration (hintText: "Type title here",filled: false),
                     validator: (val) => val!.isEmpty? "Enter the title" : null,
                     onChanged: (val){setState(() => newMeeting.title = val); },
                   )
@@ -130,7 +83,11 @@ class _NewMeetingState extends State<NewMeeting> {
                             children: [
                               IconButton(
                                   onPressed: () async{
-                                    await getDate();
+
+                                    String date = await getDate(context);
+                                    setState((){
+                                      newMeeting.date = date;
+                                    });
                                   },
                                   icon: const Icon(Icons.calendar_today_outlined,
                                       color: colorIcons)),
@@ -150,7 +107,10 @@ class _NewMeetingState extends State<NewMeeting> {
                             children: [
                               IconButton(
                                   onPressed: () async {
-                                    await getTime();
+                                    String time = await getTime(context);
+                                    setState((){
+                                      newMeeting.time = time;
+                                    });
                                   },
                                   icon: const Icon(
                                     Icons.access_time_outlined,

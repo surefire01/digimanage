@@ -1,6 +1,6 @@
 
 import 'package:digimanage/models/home_screen_notifications/notify.dart';
-import 'package:digimanage/services/database.dart';
+import 'package:digimanage/services/database_notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +16,7 @@ class Home extends StatelessWidget {
         appBar: AppBar(title:  Text("Home"), ),
         body: StreamProvider<List<Notify>?>.value(
           initialData: null,
-          value: DatabaseService().meets,
+          value: DatabaseNotificationService().meets,
           child: const Center(
             child: NotifyUI(),
           ),

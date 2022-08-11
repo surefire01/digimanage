@@ -1,11 +1,13 @@
 // this widget decides the notification type ui
 
+import 'package:digimanage/models/home_screen_notifications/announcement.dart';
 import 'package:digimanage/models/home_screen_notifications/meeting.dart';
+import 'package:digimanage/screens/home/notification_tiles/announcement_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/home_screen_notifications/notify.dart';
-import 'meet_tile.dart';
+import 'notification_tiles/meet_tile.dart';
 
 class NotifyUI extends StatelessWidget {
   const NotifyUI({Key? key}) : super(key: key);
@@ -34,6 +36,11 @@ class NotifyUI extends StatelessWidget {
                   Meeting meeting = Meeting();
                   meeting.formJson(notifications[index].toJson());
                   return MeetingTile(meeting : meeting);
+                }
+                case "Announcement" :{
+                  Announcement announcement = Announcement();
+                  announcement.formJson(notifications[index].toJson());
+                  return AnnouncementTile(announcement: announcement);
                 }
 
               }

@@ -7,9 +7,9 @@ import 'package:digimanage/models/home_screen_notifications/utils.dart';
 
 class DatabaseNotificationService{
 
-  final String? uid;
+  //final String? uid;
 
-  DatabaseNotificationService({this.uid});
+  DatabaseNotificationService();//{this.uid});
 
 
   // collection reference
