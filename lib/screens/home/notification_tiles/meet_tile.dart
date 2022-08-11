@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:digimanage/models/meeting.dart';
+import 'package:digimanage/models/home_screen_notifications/meeting.dart';
 
 class MeetingTile extends StatelessWidget {
 
   final Meeting meeting;
-  MeetingTile({required this.meeting});
-  
+  const MeetingTile({required this.meeting});
+
+
+
+
   @override
   Widget build(BuildContext context) {
 

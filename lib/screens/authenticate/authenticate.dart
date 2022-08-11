@@ -11,6 +11,8 @@ class Authenticate extends StatefulWidget {
   State<Authenticate> createState() => _AuthenticateState();
 }
 
+// did some change to test the branching on git
+
 class _AuthenticateState extends State<Authenticate> {
   bool showSignIn = true;
   void toggleView(){
