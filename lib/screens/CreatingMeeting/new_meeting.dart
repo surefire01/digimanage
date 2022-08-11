@@ -1,4 +1,5 @@
-import 'package:digimanage/models/meeting.dart';
+import 'package:digimanage/models/home_screen_notifications/meeting.dart';
+import 'package:digimanage/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:digimanage/services/database.dart';
@@ -44,7 +45,17 @@ class _NewMeetingState extends State<NewMeeting> {
   }
 
 
-  void UpdateMeet (){
+  void updateMeet (){
+
+    // for now use snack bar to show msg if Date or time is not selected
+    if(newMeeting.date.isEmpty){
+      showSnackBar("please select a date", context);
+      return;
+    }
+    if(newMeeting.time.isEmpty){
+      showSnackBar("please select the time", context);
+      return;
+    }
 
     if(_formKey.currentState!.validate()) {
       toUpdateMeet.updateMeeting(newMeeting);
@@ -59,7 +70,7 @@ class _NewMeetingState extends State<NewMeeting> {
         appBar: AppBar(
           title: const Text("New Meeting", style: TextStyle(color: Colors.black),),
           leading: IconButton(onPressed: (){ Navigator.pop(context);},icon: Icon(Icons.arrow_back,),),
-          actions: [IconButton(onPressed: () {UpdateMeet();}, icon:Icon(Icons.done,))],
+          actions: [IconButton(onPressed: () {updateMeet();}, icon:Icon(Icons.done,))],
         ),
         body: Padding(
           padding: const EdgeInsets.all(20),

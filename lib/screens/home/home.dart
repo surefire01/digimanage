@@ -1,9 +1,10 @@
 
-import 'package:digimanage/models/meeting.dart';
-import 'package:digimanage/screens/home/meet_list.dart';
+import 'package:digimanage/models/home_screen_notifications/notify.dart';
 import 'package:digimanage/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'notify_ui_wrapper.dart';
 
 
 class Home extends StatelessWidget {
@@ -13,11 +14,11 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title:  Text("Home"), ),
-        body: StreamProvider<List<Meeting>?>.value(
+        body: StreamProvider<List<Notify>?>.value(
           initialData: null,
           value: DatabaseService().meets,
           child: const Center(
-            child: MeetingList(),
+            child: NotifyUI(),
           ),
         )
 

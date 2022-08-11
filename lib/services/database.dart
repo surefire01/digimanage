@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:digimanage/models/meeting.dart';
-import 'package:digimanage/models/user.dart';
+import 'package:digimanage/models/home_screen_notifications/meeting.dart';
+import 'package:digimanage/models/home_screen_notifications/notify.dart';
+import 'package:digimanage/models/home_screen_notifications/utils.dart';
+
 
 
 class DatabaseService{
@@ -14,29 +16,19 @@ class DatabaseService{
   final CollectionReference meetingCollection = FirebaseFirestore.instance.collection('meeting');
 
   Future updateMeeting(Meeting newMeeting)async{
-    return meetingCollection.doc().set({
-      "title" : newMeeting.title,
-      "date" : newMeeting.date,
-      "time" : newMeeting.time,
-      "venue":newMeeting.venue
-    });
+    return meetingCollection.doc().set(newMeeting.toJson());
   }
 
-  List<Meeting> _meetingListFromSnapshot(QuerySnapshot snapshot){
+  List<Notify> _meetingListFromSnapshot(QuerySnapshot snapshot){
     return snapshot.docs.map((doc){
-      Meeting newMeeting = Meeting();
       var lis = doc.data() as Map;
-      newMeeting.date= lis["date"];
-      newMeeting.time= lis["time"];
-      newMeeting.title= lis["title"];
-      newMeeting.venue= lis["venue"];
 
-      return newMeeting;
+      return toGetNotification(lis);
     }).toList();
   }
 
   // create a stream for the change in the database
-  Stream<List<Meeting>> get meets{
+  Stream<List<Notify>> get meets{
     return meetingCollection.snapshots().map(_meetingListFromSnapshot);
   }
 
