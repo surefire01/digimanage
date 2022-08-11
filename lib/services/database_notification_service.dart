@@ -1,25 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:digimanage/models/home_screen_notifications/meeting.dart';
 import 'package:digimanage/models/home_screen_notifications/notify.dart';
 import 'package:digimanage/models/home_screen_notifications/utils.dart';
 
 
 
-class DatabaseService{
+
+class DatabaseNotificationService{
 
   final String? uid;
 
-  DatabaseService({this.uid});
+  DatabaseNotificationService({this.uid});
 
 
   // collection reference
-  final CollectionReference meetingCollection = FirebaseFirestore.instance.collection('meeting');
+  final CollectionReference notifyCollection = FirebaseFirestore.instance.collection('notification');
 
-  Future updateMeeting(Meeting newMeeting)async{
-    return meetingCollection.doc().set(newMeeting.toJson());
+  Future updateNotification(Notify notify)async{
+    return notifyCollection.doc().set(notify.toJson());
   }
 
-  List<Notify> _meetingListFromSnapshot(QuerySnapshot snapshot){
+  List<Notify> _notificationListFromSnapshot(QuerySnapshot snapshot){
     return snapshot.docs.map((doc){
       var lis = doc.data() as Map;
 
@@ -29,7 +29,7 @@ class DatabaseService{
 
   // create a stream for the change in the database
   Stream<List<Notify>> get meets{
-    return meetingCollection.snapshots().map(_meetingListFromSnapshot);
+    return notifyCollection.snapshots().map(_notificationListFromSnapshot);
   }
 
   // UserData _userDataFromSnapshot(DocumentSnapshot snapshot ){
