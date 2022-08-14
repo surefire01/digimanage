@@ -9,10 +9,10 @@ DatabaseNotificationService toUpdateAnnouncement = DatabaseNotificationService()
 
 updateAnnouncement(BuildContext context){
   if(formKey.currentState!.validate()) {
-    dynamic re = toUpdateAnnouncement.updateNotification(announcement);
-    print("Asdasdasdasd");
-    print(re);
+    toUpdateAnnouncement.updateNotification(announcement);
+    announcement.clear();
     Navigator.pop(context);
+
 
   }
 

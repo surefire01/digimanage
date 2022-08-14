@@ -55,6 +55,7 @@ class _NewMeetingState extends State<NewMeeting> {
                 SizedBox(
                   width: 200,
                   child: TextFormField(
+                    initialValue: newMeeting.title,
                     decoration: InputDecoration (hintText: "Type title here",filled: false),
                     validator: (val) => val!.isEmpty? "Enter the title" : null,
                     onChanged: (val){setState(() => newMeeting.title = val); },
@@ -144,6 +145,7 @@ class _NewMeetingState extends State<NewMeeting> {
                           SizedBox(
                             width: 120,
                             child: TextFormField(
+                              initialValue: newMeeting.venue,
                               decoration: InputDecoration(hintText: "Type Venue", filled: false),
                               validator: (val) => val!.isEmpty ? "enter the venue":null ,
                               onChanged: (val){ setState(() => newMeeting.venue=val); },

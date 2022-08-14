@@ -33,4 +33,13 @@ class Meeting implements Notify{
     return "Meeting";
   }
 
+  @override
+  void clear() {
+    // TODO: implement clear
+    date = "";
+    title = "";
+    time = "";
+    venue = "";
+  }
+
 }

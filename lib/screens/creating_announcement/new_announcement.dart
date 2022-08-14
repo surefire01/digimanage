@@ -44,6 +44,7 @@ class NewAnnouncement extends StatelessWidget {
               SizedBox(
                   width: 200,
                   child: TextFormField(
+                    initialValue: announcement.title,
                     decoration: const InputDecoration (hintText: "Type title here",filled: false),
                     validator: (val) => val!.isEmpty? "Enter the title" : null,
                     onChanged: (val){announcement.title = val; },
@@ -58,6 +59,7 @@ class NewAnnouncement extends StatelessWidget {
               SizedBox(
                   width: 300,
                   child: TextFormField(
+                    initialValue: announcement.description,
                     maxLines: 8,
                     decoration: const InputDecoration (hintText: "Type description here",filled: false),
                     validator: (val) => val!.isEmpty? "Enter the description" : null,

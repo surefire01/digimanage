@@ -28,4 +28,11 @@ class Announcement implements Notify{
     };
   }
 
+  @override
+  void clear() {
+    // TODO: implement clear
+    title = "";
+    description = "";
+  }
+
 }

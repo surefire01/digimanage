@@ -25,8 +25,16 @@ class Poll implements Notify{
     // TODO: implement toJson
     return {
       'question' : question,
-      'options' : options
+      'options' : options,
+      'type' : isOfType()
     };
+  }
+
+  @override
+  void clear() {
+    // TODO: implement clear
+    question = "";
+    options.clear();
   }
 
 }

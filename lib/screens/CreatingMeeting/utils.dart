@@ -48,9 +48,10 @@ void updateMeet (BuildContext context){
 
   if(formKey.currentState!.validate()) {
     toUpdateMeet.updateNotification(newMeeting);
-    newMeeting.date = "";
-    newMeeting.time = "";
+    newMeeting.clear();
     Navigator.pop(context);
+
+
 
   }
 }
