@@ -3,7 +3,7 @@ import 'package:digimanage/models/home_screen_notifications/notify.dart';
 class Poll implements Notify{
 
   String question="";
-  List<String> options = [];
+  List<dynamic> options = [];
   //bool multiple=false; will implement soon
 
 

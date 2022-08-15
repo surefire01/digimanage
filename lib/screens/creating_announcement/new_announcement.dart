@@ -63,7 +63,7 @@ class NewAnnouncement extends StatelessWidget {
                     maxLines: 8,
                     decoration: const InputDecoration (hintText: "Type description here",filled: false),
                     validator: (val) => val!.isEmpty? "Enter the description" : null,
-                    onChanged: (val){announcement.title = val; },
+                    onChanged: (val){announcement.description = val; },
                   )
               ),
             ],

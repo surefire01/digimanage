@@ -21,9 +21,9 @@ class DatabaseNotificationService{
 
   List<Notify> _notificationListFromSnapshot(QuerySnapshot snapshot){
     return snapshot.docs.map((doc){
-      var lis = doc.data() as Map;
+      var map = doc.data() as Map;
 
-      return toGetNotification(lis);
+      return toGetNotification(map);
     }).toList();
   }
 

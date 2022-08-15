@@ -3,7 +3,6 @@ import 'package:digimanage/models/home_screen_notifications/notify.dart';
 import 'package:digimanage/services/database_notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'notify_ui_wrapper.dart';
 
 

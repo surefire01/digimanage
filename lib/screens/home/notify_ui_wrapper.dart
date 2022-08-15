@@ -2,7 +2,9 @@
 
 import 'package:digimanage/models/home_screen_notifications/announcement.dart';
 import 'package:digimanage/models/home_screen_notifications/meeting.dart';
+import 'package:digimanage/models/home_screen_notifications/poll.dart';
 import 'package:digimanage/screens/home/notification_tiles/announcement_tile.dart';
+import 'package:digimanage/screens/home/notification_tiles/poll_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,12 +23,12 @@ class NotifyUI extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(15,10,0,0),
+          padding: const EdgeInsets.fromLTRB(15,10,0,10),
           child: Text("Notification",style: TextStyle(color: Colors.blue),),
         ),
         Expanded(
           child: ListView.builder(
-            //restorationId: "Notification",
+
             itemCount: notifications?.length ?? 0,
             itemBuilder: (context, index){
 
@@ -41,6 +43,12 @@ class NotifyUI extends StatelessWidget {
                   Announcement announcement = Announcement();
                   announcement.formJson(notifications[index].toJson());
                   return AnnouncementTile(announcement: announcement);
+                }
+
+                case "Poll" :{
+                  Poll poll = Poll();
+                  poll.formJson(notifications[index].toJson());
+                  return PollTile(poll: poll);
                 }
 
               }

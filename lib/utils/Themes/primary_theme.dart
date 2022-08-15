@@ -10,6 +10,9 @@ ThemeData primaryTheme = ThemeData(
     cardTheme: CardTheme(elevation: 0, margin: EdgeInsets.all(0)),
     listTileTheme: ListTileThemeData(
         iconColor: Colors.blue,
+      dense: true,
+      horizontalTitleGap: 0,
+
       shape: OutlineInputBorder(borderSide: BorderSide(style: BorderStyle.none)),
     ),
     textTheme: const TextTheme(),
