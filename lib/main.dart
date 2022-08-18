@@ -1,6 +1,5 @@
 import 'package:digimanage/utils/Themes/primary_theme.dart';
 import 'package:digimanage/models/user.dart';
-import 'package:digimanage/screens/CreatingMeeting/new_meeting.dart';
 import 'package:digimanage/screens/Wrapper/wrapper.dart';
 import 'package:digimanage/services/authentication.dart';
 import 'package:flutter/material.dart';
@@ -23,13 +22,6 @@ class MyApp extends StatelessWidget {
       value: AuthService().user,
       initialData: null,
       child: MaterialApp(
-        routes: {
-          "0" : (context) => NewMeeting(),
-          "1" : (context) => NewMeeting(),
-          "2" : (context) => NewMeeting(),
-          "3" : (context) => NewMeeting(),
-
-        },
         theme: primaryTheme,
         home:Wrapper(),
       ),

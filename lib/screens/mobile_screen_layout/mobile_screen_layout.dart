@@ -1,7 +1,7 @@
 
 import 'package:digimanage/screens/mobile_screen_layout/utils.dart';
 import 'package:flutter/material.dart';
-import '../create_menue/create_menue.dart';
+import '../create_item_screens/create_menue/create_menue.dart';
 
 
 
@@ -59,7 +59,6 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
         physics: NeverScrollableScrollPhysics(),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
         currentIndex: _page,
         onTap: (page) {navigationTapped(page,context);},
         items: [

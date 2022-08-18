@@ -23,7 +23,7 @@ class DatabaseNotificationService{
     return snapshot.docs.map((doc){
       var map = doc.data() as Map;
 
-      return toGetNotification(map);
+      return toGetNotification(map)!;
     }).toList();
   }
 

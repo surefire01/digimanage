@@ -5,26 +5,20 @@ import 'package:digimanage/models/home_screen_notifications/meeting.dart';
 import 'package:digimanage/models/home_screen_notifications/notify.dart';
 import 'package:digimanage/models/home_screen_notifications/poll.dart';
 
-Notify toGetNotification(Map map){
+Notify? toGetNotification(Map map){
   switch (map["type"]) {
     case "Meeting":{
-      Meeting newMeeting = Meeting();
-      newMeeting.formJson(map);
-      return newMeeting;
+      return Meeting.fromJson(map);
     }
     case "Announcement":{
-      Announcement announcement = Announcement();
-      announcement.formJson(map);
-      return announcement;
+      return Announcement.fromJson(map);
     }
     case "Poll":{
-      Poll poll = Poll();
-      poll.formJson(map);
-      return poll;
+      return Poll.fromJson(map);
     }
   }
 
-  Meeting meeting = Meeting();
 
-  return meeting;
+
+  return null;
 }

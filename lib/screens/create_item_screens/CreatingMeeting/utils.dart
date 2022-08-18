@@ -37,11 +37,11 @@ Future getTime(BuildContext context) async{
 void updateMeet (BuildContext context){
 
   // for now use snack bar to show msg if Date or time is not selected
-  if(newMeeting.date.isEmpty){
+  if(newMeeting.date!.isEmpty){
     showSnackBar("please select a date", context);
     return;
   }
-  if(newMeeting.time.isEmpty){
+  if(newMeeting.time!.isEmpty){
     showSnackBar("please select the time", context);
     return;
   }

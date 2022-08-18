@@ -1,7 +1,9 @@
 import 'package:digimanage/models/home_screen_notifications/poll.dart';
 import 'package:digimanage/utils/utils.dart';
 import 'package:flutter/material.dart';
-import '../../services/database_notification_service.dart';
+import 'package:digimanage/screens/create_item_screens/creating_poll/new_poll.dart';
+import '../../../services/database_notification_service.dart';
+
 
 Poll poll = Poll();
 String tempOption = "";
@@ -11,7 +13,7 @@ DatabaseNotificationService toUpdateAnnouncement = DatabaseNotificationService()
 
 
 updatePoll(BuildContext context){
-  if(poll.options.isEmpty){
+  if(poll.options!.isEmpty){
     showSnackBar("At least 1 option needed", context);
     return;
   }
@@ -25,7 +27,8 @@ updatePoll(BuildContext context){
 
 class OptionTile extends StatelessWidget {
   final String option;
-  OptionTile({required this.option});
+  final Function removeOptions;
+  OptionTile({required this.option, required this.removeOptions});
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +38,14 @@ class OptionTile extends StatelessWidget {
         dense: true,
         //isThreeLine: true,
         contentPadding: EdgeInsets.fromLTRB(3,0,3,3),
-        leading: Icon(Icons.circle_outlined, color: Colors.black,size: 18,),
-        title: Text(option)
+        leading: Icon(Icons.circle_outlined, color: Colors.grey,size: 18,),
+        title: Text(option),
+        trailing: IconButton(
+        icon: Icon(Icons.cancel_outlined, color: Colors.grey[300],size: 18,),
+        onPressed: (){
+          poll.options!.remove(option);
+          removeOptions();
+        },),
         ),
       );
   }

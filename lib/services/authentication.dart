@@ -42,15 +42,13 @@ class AuthService{
 
       //create a new document for the user using uid
 
-      return "account created successfully";
+      return result.user == null? null : result.user!.uid;
 
-    } on FirebaseAuthException catch (e){
-      return e.code;
     }
 
     catch(e){
       print(e.toString());
-      return e.toString();
+      return null;
     }
   }
 

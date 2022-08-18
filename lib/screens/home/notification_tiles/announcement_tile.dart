@@ -23,8 +23,8 @@ class AnnouncementTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                NotificationTypeAndHeading(type: announcement.isOfType(), heading: announcement.title),
-                Text(announcement.description,
+                NotificationTypeAndHeading(type: announcement.isOfType(), heading: announcement.title!),
+                Text(announcement.description!,
                     style: TextStyle(color: Colors.black.withOpacity(0.60))),
               ],
             ),

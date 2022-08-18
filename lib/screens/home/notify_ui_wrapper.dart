@@ -22,8 +22,8 @@ class NotifyUI extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(15,10,0,10),
+        const Padding(
+          padding: EdgeInsets.fromLTRB(15,10,0,10),
           child: Text("Notification",style: TextStyle(color: Colors.blue),),
         ),
         Expanded(
@@ -35,20 +35,14 @@ class NotifyUI extends StatelessWidget {
               switch (notifications![index].isOfType()) {
 
                 case "Meeting" :{
-                  Meeting meeting = Meeting();
-                  meeting.formJson(notifications[index].toJson());
-                  return MeetingTile(meeting : meeting);
+                  return MeetingTile(meeting : Meeting.fromJson(notifications[index].toJson()));
                 }
                 case "Announcement" :{
-                  Announcement announcement = Announcement();
-                  announcement.formJson(notifications[index].toJson());
-                  return AnnouncementTile(announcement: announcement);
+                  return AnnouncementTile(announcement: Announcement.fromJson(notifications[index].toJson()));
                 }
 
                 case "Poll" :{
-                  Poll poll = Poll();
-                  poll.formJson(notifications[index].toJson());
-                  return PollTile(poll: poll);
+                  return PollTile(poll: Poll.fromJson(notifications[index].toJson()));
                 }
 
               }

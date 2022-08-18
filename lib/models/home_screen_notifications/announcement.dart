@@ -1,15 +1,20 @@
 import 'package:digimanage/models/home_screen_notifications/notify.dart';
 
 class Announcement implements Notify{
-  String title = "";
-  String description = "";
+  String? title = "";
+  String? description = "";
 
+  Announcement({this.title,this.description});
+
+  Announcement.fromJson(Map map){
+    title = map["title"];
+    description = map["description"];
+  }
 
   @override
   void formJson(Map map) {
     // TODO: implement formJson
-    title = map["title"];
-    description = map["description"];
+
   }
 
   @override
@@ -22,8 +27,8 @@ class Announcement implements Notify{
   Map<String,String> toJson() {
     // TODO: implement toJson
     return {
-      "title" : title,
-      "description": description,
+      "title" : title!,
+      "description": description!,
       "type": isOfType()
     };
   }

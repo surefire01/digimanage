@@ -1,6 +1,10 @@
 
+import 'package:digimanage/models/user.dart';
 import 'package:digimanage/services/authentication.dart';
+import 'package:digimanage/services/user_data_database_service.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/utils.dart';
 
 class Register extends StatefulWidget {
 
@@ -16,11 +20,16 @@ class _RegisterState extends State<Register> {
 
   String email = "";
   String password = "";
-  String error = "";
+  String name = "";
+  String branch = "";
+  String year = "";
   bool loading = false;
 
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  final UserDatabaseService _userDatabaseService = UserDatabaseService();
+  late UserData userData;
+
 
   // to sign up
   Future<void> signUp() async{
@@ -28,11 +37,15 @@ class _RegisterState extends State<Register> {
       setState(() => loading=true);
       dynamic result = await _auth.registerWithEmailAndPassword(email, password);
       if(result==null){
+        showSnackBar("error occurred", context);
         setState(() {
-          error= "please supply valid email";
           loading =false;
         }
         );
+      }else{
+        userData = UserData(name: name, branch: branch, year: year, uid: result);
+        dynamic res = await _userDatabaseService.updateUserData(userData);
+        showSnackBar("registered successfully", context);
       }
     }
 
@@ -57,28 +70,28 @@ class _RegisterState extends State<Register> {
                   TextFormField(
                     decoration: InputDecoration(hintText: "Full Name"),
                     validator: (val) => val!.isEmpty? "Enter full name" : null,
-                    onChanged: (val){setState(() => email = val); },
+                    onChanged: (val){setState(() => name = val); },
                   ), // Full Name
 
                   const SizedBox(height: 20,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
+                      SizedBox(
                         width: 130,
                         child: TextFormField(
                           decoration: InputDecoration(hintText: "Year"),
                           validator: (val) => val!.isEmpty? "Enter Year" : null,
-                          onChanged: (val){setState(() => email = val); },
+                          onChanged: (val){setState(() => year = val); },
                         ),
                       ), //Year
-                      Container(
+                      SizedBox(
                         width: 180,
                         child: TextFormField(
                           //keyboardType: TextInputType.numberWithOptions(),
                           decoration: InputDecoration(hintText: "Branch"),
                           validator: (val) => val!.isEmpty? "Enter branch" : null,
-                          onChanged: (val){setState(() => email = val); },
+                          onChanged: (val){setState(() => branch = val); },
                         ),
                       ), //Branch
                     ],
@@ -98,11 +111,11 @@ class _RegisterState extends State<Register> {
                     onChanged: (val){ setState(() => password=val); },
                   ), // passward
                   const SizedBox(height: 20,),
-                  Container(
+                  SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: signUp,
-                      child: Container(child : loading == true ? Container(height: 20,width: 20,child: CircularProgressIndicator(strokeWidth: 2,)) : Text("Sign up")),
+                      child: Container(child : loading == true ? const SizedBox(height: 20,width: 20,child: CircularProgressIndicator(strokeWidth: 2,)) : const Text("Sign up")),
                     ),
                   ), // Sign up
                   const SizedBox(height: 20,),

@@ -18,7 +18,7 @@ class PollTile extends StatelessWidget {
         child: Row(
           children: [
             notificationDot,
-            NotificationTypeAndHeading(type: poll.isOfType(), heading: poll.question)
+            NotificationTypeAndHeading(type: poll.isOfType(), heading: poll.question!)
           ],
         )
       ) ,

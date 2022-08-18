@@ -1,5 +1,5 @@
 
-import 'package:digimanage/screens/creating_announcement/utils.dart';
+import 'package:digimanage/screens/create_item_screens/creating_announcement/utils.dart';
 import 'package:flutter/material.dart';
 
 class NewAnnouncement extends StatelessWidget {
@@ -9,7 +9,7 @@ class NewAnnouncement extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("New Announcement", style: TextStyle(color: Colors.black),),
+        title: const Text("New Announcement"),
         leading: IconButton(onPressed: (){ Navigator.pop(context);},icon: Icon(Icons.arrow_back,),),
         actions: [IconButton(onPressed: () {updateAnnouncement(context);}, icon:Icon(Icons.done,))],
       ),

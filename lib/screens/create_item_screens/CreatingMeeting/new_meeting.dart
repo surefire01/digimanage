@@ -1,9 +1,5 @@
-import 'package:digimanage/models/home_screen_notifications/meeting.dart';
-import 'package:digimanage/screens/CreatingMeeting/utils.dart';
-import 'package:digimanage/utils/utils.dart';
+import 'package:digimanage/screens/create_item_screens/CreatingMeeting/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:digimanage/services/database_notification_service.dart';
 
 
 const colorIcons = Colors.blue;
@@ -21,7 +17,7 @@ class _NewMeetingState extends State<NewMeeting> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("New Meeting", style: TextStyle(color: Colors.black),),
+          title: const Text("New Meeting"),
           leading: IconButton(onPressed: (){ Navigator.pop(context);},icon: Icon(Icons.arrow_back,),),
           actions: [IconButton(onPressed: () {updateMeet(context);}, icon:Icon(Icons.done,))],
         ),
@@ -93,7 +89,7 @@ class _NewMeetingState extends State<NewMeeting> {
                                   icon: const Icon(Icons.calendar_today_outlined,
                                       color: colorIcons)),
                               Text(
-                                newMeeting.date.isEmpty ? "DD/ MM / YYYY"  : newMeeting.date,
+                                newMeeting.date!.isEmpty ? "DD/ MM / YYYY"  : newMeeting.date!,
                                 style: const TextStyle(
                                     fontSize: 14, color: Colors.black),
                               )
@@ -118,7 +114,7 @@ class _NewMeetingState extends State<NewMeeting> {
                                     color: colorIcons,
                                   )),
                               Text(
-                                newMeeting.time.isEmpty ? time.format(context).toString() : newMeeting.time,
+                                newMeeting.time!.isEmpty ? time.format(context).toString() : newMeeting.time!,
                                 style: const TextStyle(
                                     fontSize: 14, color: Colors.black),
                               )

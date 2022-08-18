@@ -2,17 +2,17 @@ import 'package:digimanage/models/home_screen_notifications/notify.dart';
 
 class Poll implements Notify{
 
-  String question="";
-  List<dynamic> options = [];
+  String? question="";
+  List<dynamic>? options = [];
   //bool multiple=false; will implement soon
 
+  Poll({this.options,this.question});
 
-  @override
-  void formJson(Map map) {
-    // TODO: implement formJson
+  Poll.fromJson(Map map){
     question = map['question'];
     options = map['options'];
   }
+
 
   @override
   String isOfType() {
@@ -34,7 +34,7 @@ class Poll implements Notify{
   void clear() {
     // TODO: implement clear
     question = "";
-    options.clear();
+    options!.clear();
   }
 
 }

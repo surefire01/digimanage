@@ -1,4 +1,4 @@
-import 'package:digimanage/screens/creating_poll/utils.dart';
+import 'package:digimanage/screens/create_item_screens/creating_poll/utils.dart';
 import 'package:flutter/material.dart';
 
 class NewPoll extends StatefulWidget {
@@ -12,19 +12,22 @@ class _NewPollState extends State<NewPoll> {
 
   TextEditingController textEditingControllerOptions = TextEditingController();
 
+  void removeOptions(){
+    setState((){});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "New Poll",
-          style: TextStyle(color: Colors.black),
+          "New Poll"
         ),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
           ),
         ),
@@ -33,7 +36,7 @@ class _NewPollState extends State<NewPoll> {
               onPressed: () {
                 updatePoll(context);
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.done,
               ))
         ],
@@ -67,7 +70,7 @@ class _NewPollState extends State<NewPoll> {
                   child: TextFormField(
                     initialValue: poll.question,
                     decoration: const InputDecoration(
-                        hintText: "Type question here",
+                        hintText: "Type question here...",
                         filled: false,
                        ),
                     //scrollPadding: EdgeInsets.all(0),
@@ -82,9 +85,9 @@ class _NewPollState extends State<NewPoll> {
                 height: 20,
               ),
               const Text("Options",style: TextStyle(fontSize: 20),),
-              poll.options.isEmpty? Container() :
+              poll.options!.isEmpty? Container() :
                   Column(
-                     children: poll.options.map((e) => OptionTile(option: e)).toList(),
+                     children: poll.options!.map((e) => OptionTile(option: e, removeOptions: removeOptions,)).toList(),
                   ),
               const SizedBox(
                 height: 20,
@@ -92,21 +95,22 @@ class _NewPollState extends State<NewPoll> {
               TextField(
                 controller: textEditingControllerOptions,
                 decoration:  InputDecoration(
-                    hintText: "Type option here",
+                    prefixIcon: const Icon(Icons.circle_outlined,color: Colors.grey,size: 18,),
+                    hintText: "Type option here...",
                     filled: false,
                     suffix: IconButton(
                         onPressed: () {
                           setState(() {
-                            poll.options.add(textEditingControllerOptions.text);
+                            poll.options!.add(textEditingControllerOptions.text);
                             textEditingControllerOptions.clear();
                           });
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.done,
                           color: Colors.grey,
                         ))),
               ),
-
+              Flex(direction: Axis.vertical,)
 
             ],
           ),

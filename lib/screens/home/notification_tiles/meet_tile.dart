@@ -24,14 +24,14 @@ class MeetingTile extends StatelessWidget {
             Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  NotificationTypeAndHeading(type: meeting.isOfType(), heading: meeting.title),
+                  NotificationTypeAndHeading(type: meeting.isOfType(), heading: meeting.title!),
                   Row(
                     children: [
-                      Text(meeting.time,style: TextStyle(color: Colors.blue),),
+                      Text(meeting.time!,style: TextStyle(color: Colors.blue),),
                       SizedBox(width: 25),
-                      Text(meeting.venue,style: TextStyle(color: Colors.blue)),
+                      Text(meeting.venue!,style: TextStyle(color: Colors.blue)),
                       SizedBox(width: 25,),
-                      Text(meeting.date,style: TextStyle(color: Colors.blue))
+                      Text(meeting.date!,style: TextStyle(color: Colors.blue))
                     ],
                   )
                 ],
