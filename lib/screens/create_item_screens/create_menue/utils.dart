@@ -1,5 +1,5 @@
-import 'package:digimanage/screens/creating_announcement/new_announcement.dart';
-import 'package:digimanage/screens/creating_poll/new_poll.dart';
+import 'package:digimanage/screens/create_item_screens/creating_announcement/new_announcement.dart';
+import 'package:digimanage/screens/create_item_screens/creating_poll/new_poll.dart';
 import 'package:flutter/material.dart';
 
 import '../CreatingMeeting/new_meeting.dart';

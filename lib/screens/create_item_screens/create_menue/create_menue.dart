@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 
 void showCreateMenu(BuildContext context) {
   showModalBottomSheet(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.0),
+          topRight: Radius.circular(20.0),
+        ),
+      ),
       context: context,
       builder: (context) {
         return Column(
@@ -13,7 +19,7 @@ void showCreateMenu(BuildContext context) {
               padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
               child: Text(
                 "  Select action",
-                style: Theme.of(context).textTheme.headlineSmall,
+                style: Theme.of(context).textTheme.headline5,
               ),
             ),
             Container(
@@ -33,9 +39,10 @@ void showCreateMenu(BuildContext context) {
             ),
             Container(
               decoration: BoxDecoration(
-                border: Border(top: BorderSide(width: 1,color: Colors.grey[300]!))
+                border: Border(top: BorderSide(width: 0.5,color: Colors.grey[200]!))
               ),
                 width: double.infinity,
+                //height: 60,
                 child: TextButton(
                     onPressed: () {Navigator.pop(context);},
                     child: Text(
@@ -60,6 +67,7 @@ class CreateMenueTile extends StatelessWidget {
       padding: EdgeInsets.only(top: 8),
       child: Card(
         child: ListTile(
+          dense: false,
           onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => route));},
           leading: Icon(ic),
           title: Text(title),

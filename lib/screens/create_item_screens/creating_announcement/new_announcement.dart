@@ -52,7 +52,7 @@ class NewAnnouncement extends StatelessWidget {
               ),
               const SizedBox(height: 65,),
               const Text(
-                "Title",
+                "Description",
                 style: TextStyle(fontSize: 20),
               ),
               const SizedBox(height: 20,),
