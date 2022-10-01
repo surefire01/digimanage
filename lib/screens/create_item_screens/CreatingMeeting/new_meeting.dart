@@ -52,12 +52,12 @@ class _NewMeetingState extends State<NewMeeting> {
                   width: 200,
                   child: TextFormField(
                     initialValue: newMeeting.title,
-                    decoration: InputDecoration (hintText: "Type title here",filled: false),
+                    decoration: const InputDecoration (hintText: "Type title here",filled: false),
                     validator: (val) => val!.isEmpty? "Enter the title" : null,
                     onChanged: (val){setState(() => newMeeting.title = val); },
                   )
                 ), // For Title
-                SizedBox(
+                const SizedBox(
                   height: 45,
                 ),
                 Column(
@@ -89,7 +89,7 @@ class _NewMeetingState extends State<NewMeeting> {
                                   icon: const Icon(Icons.calendar_today_outlined,
                                       color: colorIcons)),
                               Text(
-                                newMeeting.date!.isEmpty ? "DD/ MM / YYYY"  : newMeeting.date!,
+                                newMeeting.date.isEmpty ? "DD/ MM / YYYY"  : newMeeting.date,
                                 style: const TextStyle(
                                     fontSize: 14, color: Colors.black),
                               )
@@ -114,7 +114,7 @@ class _NewMeetingState extends State<NewMeeting> {
                                     color: colorIcons,
                                   )),
                               Text(
-                                newMeeting.time!.isEmpty ? time.format(context).toString() : newMeeting.time!,
+                                newMeeting.time.isEmpty ? const TimeOfDay(hour: 12, minute: 00).format(context).toString() : newMeeting.time,
                                 style: const TextStyle(
                                     fontSize: 14, color: Colors.black),
                               )
@@ -126,33 +126,30 @@ class _NewMeetingState extends State<NewMeeting> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Container(
-                      // this is the container for Venue
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.all(10),
-                            child: Icon(
-                              Icons.location_on_outlined,
-                              color: colorIcons,
-                            ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Icon(
+                            Icons.location_on_outlined,
+                            color: colorIcons,
                           ),
-                          SizedBox(
-                            width: 120,
-                            child: TextFormField(
-                              initialValue: newMeeting.venue,
-                              decoration: InputDecoration(hintText: "Type Venue", filled: false),
-                              validator: (val) => val!.isEmpty ? "enter the venue":null ,
-                              onChanged: (val){ setState(() => newMeeting.venue=val); },
-                            ), //Venue
-                          )
-                        ],
-                      ),
+                        ),
+                        SizedBox(
+                          width: 120,
+                          child: TextFormField(
+                            initialValue: newMeeting.venue,
+                            decoration: const InputDecoration(hintText: "Type Venue", filled: false),
+                            validator: (val) => val!.isEmpty ? "enter the venue":null ,
+                            onChanged: (val){ setState(() => newMeeting.venue=val); },
+                          ), //Venue
+                        )
+                      ],
                     ),
                   ],
                 ), // For Date and Place
-                SizedBox(
+                const SizedBox(
                   height: 45,
                 ),
                 // Column(

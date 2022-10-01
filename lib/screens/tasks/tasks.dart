@@ -9,7 +9,15 @@ class Tasks extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Tasks")),
-      body:const Text("No tasks yet"),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children:  const [
+            Text("No tasks yet",style: TextStyle(color: Colors.blue),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

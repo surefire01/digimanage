@@ -1,23 +1,38 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:digimanage/models/home_screen_notifications/notify.dart';
 import 'package:digimanage/models/home_screen_notifications/utils.dart';
+import 'package:digimanage/services/user_data_database_service.dart';
 
 
 
 
 class DatabaseNotificationService{
 
-  //final String? uid;
-
-  DatabaseNotificationService();//{this.uid});
-
+  DatabaseNotificationService();
 
   // collection reference
-  final CollectionReference notifyCollection = FirebaseFirestore.instance.collection('notification');
+  static final CollectionReference notifyCollection = FirebaseFirestore.instance.collection('notification');
 
-  Future updateNotification(Notify notify)async{
-    return notifyCollection.doc().set(notify.toJson());
+  static Future createNotification(Notify notify)async{
+    final docUser = notifyCollection.doc();
+    notify.docId = docUser.id;
+    return docUser.set(notify.toJson());
   }
+
+  static Future deleteNotification(Notify notify)async{
+    final docUser = notifyCollection.doc(notify.docId);
+    if(notify.userUid == UserDatabaseService.curUserData!.uid) {
+      docUser.delete();
+    }
+  }
+
+  static Future readNotification(Notify notify)async{
+    final docUser = notifyCollection.doc(notify.docId);
+    docUser.update(
+      {"read" : true}
+    );
+  }
+
 
   List<Notify> _notificationListFromSnapshot(QuerySnapshot snapshot){
     return snapshot.docs.map((doc){

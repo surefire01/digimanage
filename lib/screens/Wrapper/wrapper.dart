@@ -32,7 +32,7 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = Provider.of<UserUid?>(context);
     //print(user?.uid);
-    return user == null ? Authenticate() : MobileScreenLayout();
+    return user == null ? const Authenticate() : const MobileScreenLayout();
 
   }
 }

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="digimanage.com.digimanage">
    <application
-        android:label="digimanage"
+        android:label="SuperWise"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

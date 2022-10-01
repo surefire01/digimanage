@@ -43,7 +43,7 @@ class _RegisterState extends State<Register> {
         }
         );
       }else{
-        userData = UserData(name: name, branch: branch, year: year, uid: result);
+        userData = UserData(name: name, branch: branch, year: year, uid: result,email: email);
         dynamic res = await _userDatabaseService.updateUserData(userData);
         showSnackBar("registered successfully", context);
       }

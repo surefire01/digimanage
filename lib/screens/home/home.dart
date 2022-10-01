@@ -12,9 +12,9 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title:  Text("Home"), ),
-        body: StreamProvider<List<Notify>?>.value(
-          initialData: null,
+        appBar: AppBar(title: const  Text("Home"), ),
+        body: StreamProvider<List<Notify>>.value(
+          initialData: [],
           value: DatabaseNotificationService().meets,
           child: const Center(
             child: NotifyUI(),

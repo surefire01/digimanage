@@ -1,5 +1,3 @@
-// function to decide which notify to create form json
-
 import 'package:digimanage/models/home_screen_notifications/announcement.dart';
 import 'package:digimanage/models/home_screen_notifications/meeting.dart';
 import 'package:digimanage/models/home_screen_notifications/notify.dart';
@@ -17,8 +15,6 @@ Notify? toGetNotification(Map map){
       return Poll.fromJson(map);
     }
   }
-
-
 
   return null;
 }

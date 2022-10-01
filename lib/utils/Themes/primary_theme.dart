@@ -6,9 +6,12 @@ import 'package:flutter/material.dart';
 
 import 'input_decoration_theme.dart';
 
+Color focusedMenuHolderColor = Colors.grey[100]!;
+
 ThemeData primaryTheme = ThemeData(
-    cardTheme: CardTheme(elevation: 0, margin: EdgeInsets.all(0)),
-    listTileTheme: ListTileThemeData(
+
+    cardTheme: const CardTheme(elevation: 0, margin: EdgeInsets.all(0)),
+    listTileTheme: const ListTileThemeData(
         iconColor: Colors.blue,
       dense: true,
       horizontalTitleGap: 0,
@@ -17,14 +20,14 @@ ThemeData primaryTheme = ThemeData(
     ),
     textTheme: const TextTheme(),
     iconTheme: const IconThemeData(color: Colors.blue),
-    progressIndicatorTheme: ProgressIndicatorThemeData(color: Colors.white, ),
+    progressIndicatorTheme: const  ProgressIndicatorThemeData(color: Colors.white, ),
     appBarTheme: appBarTheme,
     scaffoldBackgroundColor: Colors.white,
     backgroundColor: Colors.white,
     elevatedButtonTheme: elevatedButtonThemeData,
     inputDecorationTheme: forSignIn,
     bottomNavigationBarTheme: bottomNavigationBarThemeData,
-    bottomSheetTheme: BottomSheetThemeData(
+    bottomSheetTheme: const BottomSheetThemeData(
         elevation: 0,
         backgroundColor: Colors.white,
 

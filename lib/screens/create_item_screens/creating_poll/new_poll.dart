@@ -9,20 +9,17 @@ class NewPoll extends StatefulWidget {
 }
 
 class _NewPollState extends State<NewPoll> {
-
   TextEditingController textEditingControllerOptions = TextEditingController();
 
-  void removeOptions(){
-    setState((){});
+  void removeOptions() {
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "New Poll"
-        ),
+        title: const Text("New Poll"),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -42,7 +39,7 @@ class _NewPollState extends State<NewPoll> {
         ],
       ),
       body: Form(
-        key: formKey ,
+        key: formKey,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
@@ -70,9 +67,9 @@ class _NewPollState extends State<NewPoll> {
                   child: TextFormField(
                     initialValue: poll.question,
                     decoration: const InputDecoration(
-                        hintText: "Type question here...",
-                        filled: false,
-                       ),
+                      hintText: "Type question here...",
+                      filled: false,
+                    ),
                     //scrollPadding: EdgeInsets.all(0),
                     //maxLines: 2,
                     validator: (val) =>
@@ -84,34 +81,47 @@ class _NewPollState extends State<NewPoll> {
               const SizedBox(
                 height: 20,
               ),
-              const Text("Options",style: TextStyle(fontSize: 20),),
-              poll.options!.isEmpty? Container() :
-                  Column(
-                     children: poll.options!.map((e) => OptionTile(option: e, removeOptions: removeOptions,)).toList(),
-                  ),
-              const SizedBox(
-                height: 20,
+              const Text(
+                "Options",
+                style: TextStyle(fontSize: 20),
               ),
-              TextField(
-                controller: textEditingControllerOptions,
-                decoration:  InputDecoration(
-                    prefixIcon: const Icon(Icons.circle_outlined,color: Colors.grey,size: 18,),
+              Expanded(
+                child: ListView(
+                  children: poll.options
+                      .map((e) => OptionTile(
+                            option: e,
+                            removeOptions: removeOptions,
+                          ))
+                      .toList(),
+                ),
+              ),
+              SizedBox(
+                height: 47,
+                child: TextField(
+                  textAlignVertical: TextAlignVertical.center,
+                  controller: textEditingControllerOptions,
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(
+                      Icons.circle_outlined,
+                      color: Colors.grey,
+                      size: 18,
+                    ),
                     hintText: "Type option here...",
-                    filled: false,
-                    suffix: IconButton(
+                    fillColor: Colors.grey[100],
+                    suffixIcon: IconButton(
                         onPressed: () {
                           setState(() {
-                            poll.options!.add(textEditingControllerOptions.text);
+                            poll.options.add(textEditingControllerOptions.text);
                             textEditingControllerOptions.clear();
                           });
                         },
                         icon: const Icon(
                           Icons.done,
                           color: Colors.grey,
-                        ))),
+                        )),
+                  ),
+                ),
               ),
-              Flex(direction: Axis.vertical,)
-
             ],
           ),
         ),

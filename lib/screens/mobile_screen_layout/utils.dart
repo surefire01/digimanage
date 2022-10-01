@@ -5,10 +5,10 @@ import 'package:digimanage/screens/tasks/tasks.dart';
 import 'package:digimanage/screens/home/home.dart';
 
 
-const bottomNavigationBarItems = [
-  Home(),
-  Tasks(),
-  Home(),
-  Events(),
+final bottomNavigationBarItems = [
+  const Home(),
+  const Tasks(),
+  const Home(),
+  const Events(),
   Profile()
 ];

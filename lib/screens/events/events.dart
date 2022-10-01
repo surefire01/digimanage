@@ -8,7 +8,15 @@ class Events extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title:const Text("Events"),),
-      body: const Text("No events yet"),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children:  const [
+            Text("No Events yet",style: TextStyle(color: Colors.blue),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

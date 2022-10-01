@@ -7,6 +7,6 @@ import '../CreatingMeeting/new_meeting.dart';
 const createMenueList = [
   {"title":"Schedule a meeting","icon":Icons.people,"route":NewMeeting()},
   {"title":"Take a poll","icon":Icons.poll,"route":NewPoll()},
-  {"title":"Assign tasks","icon":Icons.task_alt_outlined,"route":NewMeeting()},
+  {"title":"Assign tasks","icon":Icons.task_alt_outlined,"route":Scaffold(body: Center(child: Text("Coming Soon"),),)},
   {"title":"Make an announcement","icon":Icons.volume_down,"route":NewAnnouncement()},
 ];

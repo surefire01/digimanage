@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:937409705847:android:389ff6054f382d5f981372",
+        "mobilesdk_app_id": "1:937409705847:android:ae6deb118e2d28e6981372",
         "android_client_info": {
-          "package_name": "digimanage.com.digimanage"
+          "package_name": "com.digimanage.superwise"
         }
       },
       "oauth_client": [
